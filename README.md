@@ -1,8 +1,8 @@
 # TraceRank Prototype
 
-Public-safe, state-first behavior forensics prototype for workflow-heavy SaaS and AI journeys.
+TraceRank is a public-safe behavior forensics **prototype/method demonstration** for workflow-heavy SaaS and AI journeys.
 
-TraceRank ingests **synthetic specimen event logs** and produces decision-grade diagnostic outputs:
+It ingests **synthetic specimen data** (synthetic event logs) and generates decision-grade diagnostic outputs:
 - Collapse Map
 - Activation Trace
 - Ranked Fix List
@@ -23,7 +23,8 @@ TraceRank ingests **synthetic specimen event logs** and produces decision-grade 
 ## Public-safe data note
 
 This prototype uses **synthetic specimen data** for demonstration only.  
-It contains **no client data**, no production exports, and no implied customer results or deployment.
+It contains **no client data**, no production exports, and **no implied production deployment** or customer outcomes.
+
 
 ## Why I built this
 
