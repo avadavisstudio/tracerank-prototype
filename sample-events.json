@@ -1,0 +1,55 @@
+{
+  "sessions": [
+    {
+      "sessionId": "sess_001",
+      "userId": "user_001",
+      "company": "Northstar Advisory",
+      "events": [
+        { "ts": "2026-03-07T12:00:00Z", "type": "page_view_landing" },
+        { "ts": "2026-03-07T12:00:22Z", "type": "pricing_view" },
+        { "ts": "2026-03-07T12:01:12Z", "type": "signup_started" },
+        { "ts": "2026-03-07T12:02:40Z", "type": "signup_submitted" },
+        { "ts": "2026-03-07T12:03:10Z", "type": "email_verification_started" },
+        { "ts": "2026-03-07T12:04:20Z", "type": "email_verified" },
+        { "ts": "2026-03-07T12:05:10Z", "type": "workspace_created" },
+        { "ts": "2026-03-07T12:06:00Z", "type": "import_started" },
+        { "ts": "2026-03-07T12:08:20Z", "type": "import_completed" },
+        { "ts": "2026-03-07T12:09:00Z", "type": "report_requested" },
+        { "ts": "2026-03-07T12:09:55Z", "type": "report_rendered" },
+        { "ts": "2026-03-07T12:11:15Z", "type": "teammate_invited" }
+      ]
+    },
+    {
+      "sessionId": "sess_002",
+      "userId": "user_002",
+      "company": "Northstar Advisory",
+      "events": [
+        { "ts": "2026-03-07T13:00:00Z", "type": "page_view_landing" },
+        { "ts": "2026-03-07T13:00:35Z", "type": "pricing_view" },
+        { "ts": "2026-03-07T13:01:11Z", "type": "signup_started" },
+        { "ts": "2026-03-07T13:04:20Z", "type": "help_opened" },
+        { "ts": "2026-03-07T13:05:10Z", "type": "signup_submitted" },
+        { "ts": "2026-03-07T13:05:34Z", "type": "email_verification_started" },
+        { "ts": "2026-03-07T13:09:40Z", "type": "help_opened" }
+      ]
+    },
+    {
+      "sessionId": "sess_003",
+      "userId": "user_003",
+      "company": "Meridian Ops",
+      "events": [
+        { "ts": "2026-03-07T14:00:00Z", "type": "page_view_landing" },
+        { "ts": "2026-03-07T14:00:18Z", "type": "signup_started" },
+        { "ts": "2026-03-07T14:01:14Z", "type": "signup_submitted" },
+        { "ts": "2026-03-07T14:01:44Z", "type": "email_verification_started" },
+        { "ts": "2026-03-07T14:02:40Z", "type": "email_verified" },
+        { "ts": "2026-03-07T14:03:15Z", "type": "workspace_created" },
+        { "ts": "2026-03-07T14:04:05Z", "type": "import_started" },
+        { "ts": "2026-03-07T14:05:00Z", "type": "error_shown", "meta": { "code": "CSV_HEADERS_INVALID" } },
+        { "ts": "2026-03-07T14:05:24Z", "type": "import_started" },
+        { "ts": "2026-03-07T14:06:10Z", "type": "error_shown", "meta": { "code": "CSV_HEADERS_INVALID" } },
+        { "ts": "2026-03-07T14:06:42Z", "type": "help_opened" }
+      ]
+    }
+  ]
+}
