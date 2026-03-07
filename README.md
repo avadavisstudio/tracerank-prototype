@@ -1,13 +1,29 @@
 # TraceRank Prototype
 
-TraceRank is a public-safe behavior forensics prototype for workflow-heavy SaaS and AI journeys.
+Public-safe, state-first behavior forensics prototype for workflow-heavy SaaS and AI journeys.
 
-It ingests synthetic event logs, scores collapse signals across volatility, drift, and abandonment, and generates structured diagnostic outputs:
+TraceRank ingests **synthetic specimen event logs** and produces decision-grade diagnostic outputs:
 - Collapse Map
 - Activation Trace
 - Ranked Fix List
 - Measurement Plan / KPI Dictionary
 - Event Taxonomy
+
+**Live demo:** https://avadavisstudio.github.io/tracerank-prototype/  
+**Repository:** https://github.com/avadavisstudio/tracerank-prototype
+
+## Screens
+
+![Dashboard](screenshots/dashboard.png)
+![Collapse Map](screenshots/collapse-map.png)
+![Activation Trace](screenshots/activation-trace.png)
+![Ranked Fix List](screenshots/ranked-fix-list.png)
+![Measurement Plan](screenshots/measurement-plan.png)
+
+## Public-safe data note
+
+This prototype uses **synthetic specimen data** for demonstration only.  
+It contains **no client data**, no production exports, and no implied customer results or deployment.
 
 ## Why I built this
 
