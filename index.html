@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TraceRank Prototype Demo</title>
-  <meta name="description" content="Public-safe behavior forensics prototype for workflow-heavy SaaS and AI journeys. TraceRank ingests synthetic event logs and outputs Collapse Maps, Activation Traces, Ranked Fix Lists, and measurement plans." />
+  <title>TraceRank Activation Diagnostics Prototype</title>
+  <meta name="description" content="Browser-based prototype that turns session event logs into audit-style activation diagnostics for workflow-heavy SaaS and AI flows. Synthetic specimen data only." />
   <link rel="canonical" href="https://avadavisstudio.github.io/tracerank-prototype/" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="TraceRank Prototype Demo" />
-  <meta property="og:description" content="Public-safe behavior forensics prototype for workflow-heavy SaaS and AI journeys. Synthetic specimen data only." />
+  <meta property="og:title" content="TraceRank Activation Diagnostics Prototype" />
+  <meta property="og:description" content="Browser-based prototype for converting session event logs into activation diagnostics. Synthetic specimen data only." />
   <meta property="og:url" content="https://avadavisstudio.github.io/tracerank-prototype/" />
   <meta property="og:image" content="https://avadavisstudio.github.io/tracerank-prototype/social-preview.png" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="673" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="TraceRank Prototype Demo" />
-  <meta name="twitter:description" content="Public-safe behavior forensics prototype for workflow-heavy SaaS and AI journeys. Synthetic specimen data only." />
+  <meta name="twitter:title" content="TraceRank Activation Diagnostics Prototype" />
+  <meta name="twitter:description" content="Browser-based prototype for converting session event logs into activation diagnostics. Synthetic specimen data only." />
   <meta name="twitter:image" content="https://avadavisstudio.github.io/tracerank-prototype/social-preview.png" />
   <style>
     :root {
@@ -486,8 +486,8 @@
     <aside class="sidebar">
       <div class="brand">
         <div class="eyebrow">Ava Davis Studio LLC</div>
-        <h1>TraceRank<br/>Prototype Demo</h1>
-        <p>Local-first behavior forensics for workflow-heavy SaaS and AI products. This prototype ingests session events, scores collapse risk, and produces executive-grade diagnostic artifacts.</p>
+<h1>TraceRank<br/>Prototype Demo</h1>
+<p>Browser-based activation diagnostics prototype for workflow-heavy SaaS and AI flows. Load specimen or JSON event data to see where users stall across signup, verification, setup, and first output.</p>
       </div>
 
       <div class="panel">
@@ -527,14 +527,19 @@
     <main class="main">
       <section class="hero">
         <div>
-          <div class="eyebrow">State-First Architecture Lab</div>
-          <h2>Behavior collapse surfaced as decision-grade diagnostics</h2>
-          <p>This demo converts raw event logs into a Collapse Map, Activation Trace, Ranked Fix List, Measurement Plan, evidence sessions, and event taxonomy. It is a public-safe specimen designed to prove the method, not imply client results.</p>
-        </div>
-        <div class="hero-meta" id="heroMeta">No dataset loaded</div>
+          <div class="eyebrow">Prototype · Synthetic data · Browser-local analysis</div>
+<h2>Find where activation breaks.</h2>
+<p>TraceRank turns session event logs into audit-style diagnostics for signup, verification, setup, and first output. It generates a Collapse Map, Activation Trace, Ranked Fix List, KPI dictionary, and event taxonomy.</p>
+</div>
+<div class="hero-meta" id="heroMeta">Loading specimen dataset...</div>
       </section>
 
-      <section class="grid-4" id="metricsGrid"></section>
+      <section class="card" style="margin-bottom: 16px;">
+<h3>What this is / What this is not</h3>
+<div class="subcopy"><strong>What this is:</strong> a browser-based prototype that converts event logs into audit-style activation diagnostics.<br/><br/><strong>What this is not:</strong> a production analytics platform, a session replay tool, an LLM observability stack, or evidence of customer deployments.</div>
+</section>
+
+<section class="grid-4" id="metricsGrid"></section>
 
       <section class="section-grid">
         <div class="card">
@@ -1316,6 +1321,12 @@
         setData(SPECIMEN_DATA);
       }
     })();
-  </script>
+  window.addEventListener("load", () => {
+  if (elements.loadSpecimenBtn && !state.analysis) {
+    elements.loadSpecimenBtn.click();
+  }
+});
+
+</script>
 </body>
 </html>

@@ -1,37 +1,34 @@
 # TraceRank Prototype
 
-Local-first behavior forensics prototype that analyzes session event logs and generates diagnostic artifacts for workflow-heavy SaaS and AI journeys.
+TraceRank is a browser-based prototype that turns session event logs into audit-style activation diagnostics for workflow-heavy SaaS and AI flows.
 
-**Live demo:** https://avadavisstudio.github.io/tracerank-prototype/  
-**Repository:** https://github.com/avadavisstudio/tracerank-prototype
+It uses synthetic specimen data or uploaded JSON event data to surface:
+- where users stall
+- which stage absorbs the most friction
+- which fixes should be prioritized first
 
-## What it does
-
-TraceRank turns session event logs into decision-grade diagnostic outputs for workflow-heavy SaaS and AI products.
-
-Instead of showing surface-level analytics only, it helps identify where journeys begin to fail through:
-- hesitation
-- loops
-- drift
-- trust loss
-- abandonment
-
-It generates public-safe specimen outputs such as:
+Outputs in the prototype:
 - Collapse Map
 - Activation Trace
 - Ranked Fix List
 - Measurement Plan / KPI Dictionary
 - Event Taxonomy
+- Exportable analysis report
 
-## Why it exists
+**Live demo:** https://avadavisstudio.github.io/tracerank-prototype/  
+**Repository:** https://github.com/avadavisstudio/tracerank-prototype
 
-Most teams can see drop-off. Fewer can explain exactly where the workflow starts collapsing and why.
+## What this is
+A public-safe method demo showing heuristic stage mapping and weighted friction scoring across signup, verification, workspace creation, import/setup, and first output.
 
-TraceRank is a state-first prototype built to make failure patterns visible earlier by translating raw event sequences into diagnostic artifacts that are easier to review, prioritize, and present.
+## What this is not
+- not a production analytics platform
+- not a session replay tool
+- not an LLM observability stack
+- not evidence of customer deployments or production integrations
 
-## Public-safe note
-
-This prototype uses **synthetic specimen data only**.
+## Public-safe data note
+This prototype uses synthetic specimen data only.
 
 It contains:
 - no client data
@@ -39,44 +36,37 @@ It contains:
 - no implied customer results
 - no implied production deployment
 
-## Quick start
+## How to use it
+1. Open the live demo or serve the repo locally with `python3 -m http.server 4173`
+2. Use the auto-loaded specimen dataset or upload a JSON file matching the sample schema
+3. Review the Collapse Map, Activation Trace, Ranked Fix List, KPI Dictionary, and Event Taxonomy
+4. Export the analysis report
 
-### Option 1: Use the live demo
+## Core method
+TraceRank applies:
+- heuristic stage mapping from event sequences into activation stages
+- weighted friction scoring across volatility, drift, and abandonment
+- evidence-session surfacing for manual review and prioritization
 
-Open the public demo in your browser:
+## Current limitations
+- static browser-based prototype
+- no persistent storage or authentication
+- no live data integrations
+- no replay capture
+- heuristic scoring only; not benchmarked or production-validated
 
-https://avadavisstudio.github.io/tracerank-prototype/
+## Screens
+![Dashboard](screenshots/dashboard.png)
+![Collapse Map](screenshots/collapse-map.png)
+![Activation Trace](screenshots/activation-trace.png)
+![Ranked Fix List](screenshots/ranked-fix-list.png)
+![Measurement Plan](screenshots/measurement-plan.png)
 
-### Option 2: Run locally
+## Why this matters
+Most teams can see drop-off. Fewer can explain exactly where the activation flow starts breaking and what should be fixed first.
 
-From the repo root, serve the static files locally:
+TraceRank is an attempt to package that diagnosis more usefully than surface-level analytics alone.
 
-`python3 -m http.server 4173`
-
-Then open:
-
-`http://localhost:4173`
-
-## Demo flow
-
-1. Open the prototype
-2. Click **Load specimen dataset** to analyze the built-in synthetic example
-3. Or click **Upload your own JSON** and choose a file that matches the sample schema
-4. Review the session inspector and generated outputs
-5. Click **Export analysis report** to download the structured report
-
-## Expected JSON shape
-
-```json
-{
-  "sessions": [
-    {
-      "sessionId": "s_001",
-      "userId": "u_001",
-      "company": "Acme",
-      "events": [
-        { "ts": "2026-03-07T12:00:00Z", "type": "page_view_landing" }
-      ]
-    }
-  ]
-}
+## Author
+Ava Davis  
+Ava Davis Studio LLC
