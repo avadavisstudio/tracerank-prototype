@@ -1,82 +1,96 @@
 # TraceRank Prototype
 
-Local-first behavior forensics prototype that analyzes session event logs and generates diagnostic artifacts for workflow-heavy SaaS and AI journeys.
+TraceRank is a public-safe behavior forensics prototype for workflow-heavy SaaS and AI journeys.
 
-**Live demo:** https://avadavisstudio.github.io/tracerank-prototype/  
-**Repository:** https://github.com/avadavisstudio/tracerank-prototype
+It ingests synthetic specimen event logs and generates audit-style diagnostic outputs instead of surface-level analytics dashboards.
 
-## What it does
+## Live demo
 
-TraceRank turns session event logs into decision-grade diagnostic outputs for workflow-heavy SaaS and AI products.
+Demo: https://avadavisstudio.github.io/tracerank-prototype/  
+Repo: https://github.com/avadavisstudio/tracerank-prototype
 
-Instead of showing surface-level analytics only, it helps identify where journeys begin to fail through:
-- hesitation
-- loops
-- drift
-- trust loss
-- abandonment
+## What this prototype produces
 
-It generates public-safe specimen outputs such as:
 - Collapse Map
 - Activation Trace
 - Ranked Fix List
 - Measurement Plan / KPI Dictionary
+- Evidence Sessions
 - Event Taxonomy
 
-## Why it exists
+## What this proves
 
-Most teams can see drop-off. Fewer can explain exactly where the workflow starts collapsing and why.
+This prototype demonstrates a state-first diagnostic method:
 
-TraceRank is a state-first prototype built to make failure patterns visible earlier by translating raw event sequences into diagnostic artifacts that are easier to review, prioritize, and present.
+- raw event logs can be converted into decision-grade journey diagnostics
+- collapse can be surfaced by stage, symptom, and business risk
+- friction can be translated into ranked interventions instead of vague analytics commentary
+- instrumentation can be standardized before higher-order product decisions are made
 
 ## Public-safe note
 
-This prototype uses **synthetic specimen data only**.
+This prototype uses synthetic specimen data only.
 
-It contains:
-- no client data
-- no production exports
-- no implied customer results
-- no implied production deployment
+It contains no client data, no production exports, and no implied customer outcomes or production deployment.
 
-## Quick start
+## Core scoring model
 
-### Option 1: Use the live demo
+TraceRank scores three primary forms of collapse:
 
-Open the public demo in your browser:
+- **Volatility (V):** errors, loops, unstable sequence behavior, long idle gaps
+- **Drift (D):** backtracks, help-seeking, stage wandering, loss of progression
+- **Abandonment pressure (A):** sessions that stop before meaningful completion
 
-https://avadavisstudio.github.io/tracerank-prototype/
+These signals are combined into a weighted severity model so the system can rank where intervention matters most.
 
-### Option 2: Run locally
+## Current prototype capabilities
 
-From the repo root, serve the static files locally:
+- analyze a JSON event log in-browser
+- inspect per-session collapse patterns
+- surface collapse stages and likely user state
+- rank interventions by weighted severity
+- export a structured analysis report
+- demonstrate public-safe specimen outputs for audit-style presentation
 
-`python3 -m http.server 4173`
+## Quickstart
 
-Then open:
+1. Open the live demo.
+2. Click **Load specimen dataset**.
+3. Review the Collapse Map, Ranked Fix List, Evidence Sessions, Activation Trace, and Measurement Plan.
+4. Export the report.
 
-`http://localhost:4173`
+## Screens
 
-## Demo flow
+![Dashboard](./screenshots/dashboard.png)
+![Collapse Map](./screenshots/collapse-map.png)
+![Activation Trace](./screenshots/activation-trace.png)
+![Ranked Fix List](./screenshots/ranked-fix-list.png)
+![Measurement Plan](./screenshots/measurement-plan.png)
+![Event Taxonomy / Entity Model](./screenshots/MERMAIDS.png)
 
-1. Open the prototype
-2. Click **Load specimen dataset** to analyze the built-in synthetic example
-3. Or click **Upload your own JSON** and choose a file that matches the sample schema
-4. Review the session inspector and generated outputs
-5. Click **Export analysis report** to download the structured report
+## Why this exists
 
-## Expected JSON shape
+Most teams can track clicks, views, and drop-off rates, but still cannot clearly see where users hesitate, loop, lose trust, drift off-path, or abandon before value.
 
-```json
-{
-  "sessions": [
-    {
-      "sessionId": "s_001",
-      "userId": "u_001",
-      "company": "Acme",
-      "events": [
-        { "ts": "2026-03-07T12:00:00Z", "type": "page_view_landing" }
-      ]
-    }
-  ]
-}
+TraceRank is a prototype built to test a state-first diagnostic model that converts event streams into audit-style outputs.
+
+## Roadmap
+
+Next iterations:
+
+- CSV ingestion
+- saved audits
+- richer visual exports
+- multi-project analysis
+- stronger weighting controls
+- deck-ready specimen output
+
+## Author
+
+Ava Davis  
+Ava Davis Studio LLC  
+State-First Architecture Lab
+
+## License
+
+MIT
