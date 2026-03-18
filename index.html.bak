@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TraceRank Proof-of-Method Prototype</title>
-  <meta name="description" content="Browser-based public prototype demonstrating activation diagnostics for B2B SaaS onboarding flows. Synthetic specimen data only." />
-  <link rel="canonical" href="https://avadavisstudio.github.io/tracerank-prototype/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="TraceRank Proof-of-Method Prototype" />
-  <meta property="og:description" content="Browser-based prototype for converting session event logs into activation diagnostics. Synthetic specimen data only." />
-  <meta property="og:url" content="https://avadavisstudio.github.io/tracerank-prototype/" />
-  <meta property="og:image" content="https://avadavisstudio.github.io/tracerank-prototype/social-preview.png" />
-  <meta property="og:image:width" content="1280" />
-  <meta property="og:image:height" content="673" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="TraceRank Proof-of-Method Prototype" />
-  <meta name="twitter:description" content="Browser-based prototype for converting session event logs into activation diagnostics. Synthetic specimen data only." />
-  <meta name="twitter:image" content="https://avadavisstudio.github.io/tracerank-prototype/social-preview.png" />
+ <title>TraceRank Proof-of-Method Prototype</title>
+<meta name="description" content="Public proof-of-method prototype for translating session event logs into audit-style activation diagnostics using synthetic specimen data only." />
+<link rel="canonical" href="https://avadavisstudio.github.io/tracerank-prototype/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="TraceRank Proof-of-Method Prototype" />
+<meta property="og:description" content="Public proof-of-method prototype for translating session event logs into audit-style activation diagnostics using synthetic specimen data only." />
+<meta property="og:url" content="https://avadavisstudio.github.io/tracerank-prototype/" />
+<meta property="og:image" content="https://avadavisstudio.github.io/tracerank-prototype/social-preview.png" />
+<meta property="og:image:width" content="1280" />
+<meta property="og:image:height" content="673" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="TraceRank Proof-of-Method Prototype" />
+<meta name="twitter:description" content="Public proof-of-method prototype for translating session event logs into audit-style activation diagnostics using synthetic specimen data only." />
+<meta name="twitter:image" content="https://avadavisstudio.github.io/tracerank-prototype/social-preview.png" />
   <style>
     :root {
       --bg: #0b0b0c;
@@ -485,14 +485,15 @@
   <div class="shell">
     <aside class="sidebar">
       <div class="brand">
-        <div class="eyebrow">Ava Davis Studio LLC</div>
-<h1>TraceRank<br/>Proof-of-Method Prototype</h1>
+       <div class="eyebrow">Ava Davis Studio LLC</div>
+<h1>TraceRank<br/>Prototype Demo</h1>
 <p>Public proof-of-method surface for TraceRank. Load specimen or JSON event data to review where users stall across signup, verification, setup, and first value.</p>
+<p>This prototype is a public proof-of-method surface. The paid commercial TraceRank offer is the structured buy → intake → CSV upload → audit delivery flow at app.gettracerank.com.</p>
       </div>
 
       <div class="panel">
         <h2>Run the prototype</h2>
-        <p>Everything stays in the browser. Load the built-in specimen data or upload a JSON file using the sample schema. This prototype is a public-safe proof-of-method demonstration using synthetic data.</p>
+        <p>Everything stays in the browser. Load the built-in specimen data or upload a JSON file using the sample schema. This surface exists to demonstrate proof-of-method, not the live commercial delivery flow.</p>
         <div class="button-row">
           <button id="loadSpecimenBtn" class="button-accent">Load specimen dataset</button>
           <label class="file-label" for="jsonUpload">Upload your own JSON</label>
@@ -527,16 +528,16 @@
     <main class="main">
       <section class="hero">
         <div>
-          <div class="eyebrow">Prototype · Synthetic data · Browser-local analysis</div>
-<h2>Find where onboarding deteriorates before first value.</h2>
-<p>TraceRank turns session event logs into audit-style diagnostics for signup, verification, setup, and first value. In this prototype layer, it generates a Collapse Map, Activation Trace, Ranked Fix List, KPI dictionary, and event taxonomy using synthetic specimen data.</p>
+          <div class="eyebrow">Public proof-of-method · Synthetic data only · Browser-local analysis</div>
+<h2>Find where activation breaks before first value.</h2>
+<p>TraceRank turns session event logs into audit-style diagnostics for signup, verification, setup, and first value. It generates a Collapse Map, Activation Trace, Ranked Fix List, KPI dictionary, and event taxonomy.</p>
 </div>
 <div class="hero-meta" id="heroMeta">Loading specimen dataset...</div>
       </section>
 
       <section class="card" style="margin-bottom: 16px;">
 <h3>What this is / What this is not</h3>
-<div class="subcopy"><strong>What this is:</strong> a browser-based public prototype and proof-of-method demonstration that converts event logs into audit-style activation diagnostics.<br/><br/><strong>What this is not:</strong> a production analytics platform, a session replay tool, an LLM observability stack, evidence of client deployments, or a substitute for the live commercial TraceRank offer.</div>
+<div class="subcopy"><strong>What this is:</strong> a public proof-of-method prototype that converts synthetic event logs into audit-style activation diagnostics.<br/><br/><strong>What this is not:</strong> the paid commercial TraceRank product, a production analytics platform, a session replay tool, an LLM observability stack, or evidence of customer deployments.</div>
 </section>
 
 <section class="grid-4" id="metricsGrid"></section>
@@ -591,8 +592,7 @@
       { key: "verify", label: "Verify", entryEvents: ["email_verification_started", "email_verified"], symptom: "Users get interrupted by trust checks or external confirmation steps.", rootCause: "Verification dependency, unclear reason for delay, poor continuity.", businessRisk: "High-intent users drop before they can touch the product." },
       { key: "workspace", label: "Workspace", entryEvents: ["workspace_created"], symptom: "The shell exists, but users do not yet feel progress.", rootCause: "Empty-state confusion, unclear first action, weak momentum design.", businessRisk: "New accounts inflate top-line numbers without real activation." },
       { key: "import", label: "Import / Setup", entryEvents: ["import_started", "import_completed"], symptom: "Setup becomes procedural, technical, or ambiguous.", rootCause: "Format mismatch, unclear status, missing guidance, hidden prerequisites.", businessRisk: "Time-to-value expands and team confidence drops." },
-      { key: "first_output", label: "First Output", entryEvents: ["report_requested", "report_rendered"], symptom: "Users request value but do not yet trust what comes back.", rootCause: "No explainability, latency, poor expectation setting, quality doubt.", businessRisk: "AI or analytics trust handoff fails at the highest-stakes moment." },
-      { key: "collab", label: "Collaboration", entryEvents: ["teammate_invited"], symptom: "Activation stays individual and fragile instead of becoming embedded.", rootCause: "Weak sharing prompts or no multi-user reinforcement loop.", businessRisk: "Retention and expansion stay structurally weak." }
+      { key: "first_value", label: "First value", entryEvents: ["report_requested", "report_rendered"], symptom: "Users request value but do not yet trust what comes back.", rootCause: "No explainability, latency, poor expectation setting, quality doubt.", businessRisk: "AI or analytics trust handoff fails at the highest-stakes moment." },      { key: "collab", label: "Collaboration", entryEvents: ["teammate_invited"], symptom: "Activation stays individual and fragile instead of becoming embedded.", rootCause: "Weak sharing prompts or no multi-user reinforcement loop.", businessRisk: "Retention and expansion stay structurally weak." }
     ];
 
     const EVENT_TO_STAGE = Object.fromEntries(
@@ -609,8 +609,8 @@
       ["workspace_created", "Workspace", "Empty working environment provisioned."],
       ["import_started", "Import / Setup", "User attempts to attach or ingest data."],
       ["import_completed", "Import / Setup", "Data import or setup step finishes."],
-      ["report_requested", "First Output", "User explicitly asks the system for value."],
-      ["report_rendered", "First Output", "First usable output is delivered."],
+      ["report_requested", "First value", "User explicitly asks the system for value."],
+      ["report_rendered", "First value", "First value is delivered."],
       ["teammate_invited", "Collaboration", "User attempts collaborative expansion."],
       ["help_opened", "Context / Trust", "User seeks reassurance, guidance, or recovery."],
       ["error_shown", "Failure Signal", "Product surfaced a blocking or ambiguous error."],
@@ -621,17 +621,17 @@
       {
         name: "Activation Rate",
         formula: "activated_sessions / total_sessions",
-               detail: "A session is activated when it reaches report_rendered. This prototype treats first value as the operational threshold for meaningful value receipt."
+        detail: "A session is activated when it reaches report_rendered. This prototype treats first value as the operational threshold for meaningful value receipt."
       },
       {
         name: "Collapse Rate",
         formula: "non_activated_sessions / total_sessions",
-                detail: "The share of sessions that never reach first value and instead end under friction, hesitation, or trust failure."
+        detail: "The share of sessions that never reach first value and instead end under friction, hesitation, or trust failure."
       },
       {
         name: "Median Time To Activate",
         formula: "median(report_rendered.ts - first_event.ts)",
-        detail: "How long it takes a successful session to reach first value. Use this to judge whether setup burden is compounding."
+                detail: "How long it takes a successful session to reach first value. Use this to judge whether setup burden is compounding."
       },
       {
         name: "Volatility Score (V)",
@@ -892,7 +892,7 @@
       const timeToActivateSeconds = activated ? secondsBetween(firstTs, reportRenderedAt) : null;
       const lastStage = stagesReached.length ? stagesReached[stagesReached.length - 1] : "discover";
       const lastStageIdxSafe = Math.max(stageIndex(lastStage), 0);
-      const distanceFromActivation = Math.max(0, stageIndex("first_output") - lastStageIdxSafe);
+            const distanceFromActivation = Math.max(0, stageIndex("first_value") - lastStageIdxSafe);
 
       const volatility = Math.min(100, errorCount * 22 + loops * 14 + idleGaps * 12 + (maxRepeatRun > 2 ? 10 : 0));
       const drift = Math.min(100, helpCount * 16 + backtracks * 22 + (events.some(e => e.type === "pricing_view") && lastStageIdxSafe >= 1 ? 8 : 0));
@@ -982,7 +982,7 @@
           action: "Validate file shape before upload, provide clear progress states, and ship corrective guidance next to errors.",
           metric: "import_started → import_completed completion"
         },
-        first_output: {
+                first_value: {
           title: "Repair the trust handoff at first value",
           action: "Set response-time expectations, show evidence behind the output, and explain what the user should do next.",
           metric: "report_requested → report_rendered completion"
