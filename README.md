@@ -73,11 +73,15 @@ Most teams can see drop-off. Fewer can explain exactly where onboarding deterior
 
 TraceRank is an attempt to package that diagnosis more usefully than surface-level analytics alone.
 
-## Public links
+## Public proof
 
-- Live demo: https://avadavisstudio.github.io/tracerank-prototype/
-- Live product: https://app.gettracerank.com
-- Repository: https://github.com/avadavisstudio/tracerank-prototype/
+Live product: https://app.gettracerank.com
+Prototype demo: https://avadavisstudio.github.io/tracerank-prototype/
+Company site: https://avadavisstudio.com
+
+The live product is the primary commercial surface.
+The prototype is public proof-of-method using synthetic specimen data.
+The company site is the company-verification layer behind TraceRank.
 
 ## Author
 
