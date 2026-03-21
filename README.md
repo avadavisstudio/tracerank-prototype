@@ -2,7 +2,7 @@
 
 TraceRank is a public proof-of-method prototype for activation diagnostics in B2B SaaS onboarding flows.
 
-It demonstrates how session event logs can be translated into structured diagnostic outputs such as a Collapse Map, Activation Trace, Ranked Fix List, KPI Dictionary, and Event Taxonomy using synthetic specimen data.
+It demonstrates how session event logs can be translated into structured diagnostic outputs such as a Collapse Map, Activation Trace, Ranked Fix List, Measurement Plan / KPI Dictionary, and Event Taxonomy using synthetic specimen data.
 
 ## What this prototype is
 
@@ -46,7 +46,7 @@ It contains:
 
 1. Open the live demo or serve the repo locally.
 2. Use the auto-loaded specimen dataset or upload a JSON file matching the sample schema.
-3. Review the Collapse Map, Activation Trace, Ranked Fix List, KPI Dictionary, and Event Taxonomy.
+3. Review the Collapse Map, Activation Trace, Ranked Fix List, Measurement Plan / KPI Dictionary, and Event Taxonomy.
 4. Export the analysis report.
 
 ## Core method
