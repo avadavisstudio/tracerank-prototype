@@ -1,8 +1,32 @@
 # TraceRank Prototype
 
-TraceRank is a public proof-of-method prototype for activation diagnostics in B2B SaaS onboarding flows.
+TraceRank Prototype is a public proof-of-method surface for inspecting how staged onboarding event data can be converted into a structured activation diagnostic.
 
-It demonstrates how session event logs can be translated into structured diagnostic outputs such as a Collapse Map, Activation Trace, Ranked Fix List, Measurement Plan / KPI Dictionary, and Event Taxonomy using synthetic specimen data.
+It demonstrates the report logic behind TraceRank outputs such as:
+- Collapse Map
+- Activation Trace
+- Ranked Fix List
+- Measurement OS
+- Event Taxonomy
+- Reliability framing
+
+## What this prototype proves
+
+This prototype proves:
+- the method has a real surface
+- staged event data can be reconstructed into diagnostic outputs
+- the output logic is inspectable in public
+
+## What this prototype does not prove
+
+This prototype does not prove:
+- client outcomes
+- production deployment
+- benchmarked scoring accuracy
+- implementation capability
+
+This prototype is separate from the live commercial TraceRank offer.  
+The paid offer is the TraceRank Founding Audit at **app.gettracerank.com**.
 
 ## What this prototype is
 
@@ -13,7 +37,6 @@ It is designed to show how staged onboarding event data can be converted into di
 ## What this prototype is not
 
 This prototype is not:
-
 - a production analytics platform
 - a session replay tool
 - an LLM observability stack
@@ -36,7 +59,6 @@ This prototype is a public proof-of-method surface. The paid commercial TraceRan
 This prototype uses synthetic specimen data only.
 
 It contains:
-
 - no client data
 - no production exports
 - no implied customer results
@@ -46,13 +68,12 @@ It contains:
 
 1. Open the live demo or serve the repo locally.
 2. Use the auto-loaded specimen dataset or upload a JSON file matching the sample schema.
-3. Review the Collapse Map, Activation Trace, Ranked Fix List, Measurement Plan / KPI Dictionary, and Event Taxonomy.
+3. Review the Collapse Map, Activation Trace, Ranked Fix List, Measurement OS / KPI Dictionary, and Event Taxonomy.
 4. Export the analysis report.
 
 ## Core method
 
 TraceRank applies:
-
 - heuristic stage mapping from event sequences into activation stages
 - weighted friction scoring across volatility, drift, and abandonment
 - evidence-session surfacing for manual review and prioritization
@@ -67,17 +88,30 @@ TraceRank applies:
 
 ## Why this matters
 
-Most teams can see drop-off. Fewer can explain exactly where onboarding deteriorates before first value and which intervention should be prioritized first.
+Most teams can already see drop-off. Fewer can isolate the highest-damage breakdown point, distinguish collapse from repeated effort, and decide what to fix first before first value.
 
-TraceRank is an attempt to package that diagnosis more usefully than surface-level analytics alone.
+This prototype exists so the method surface can be inspected publicly before or without purchase.
 
 ## Public links
 
-- Live demo: https://avadavisstudio.github.io/tracerank-prototype/
-- Live product: https://app.gettracerank.com
-- Repository: https://github.com/avadavisstudio/tracerank-prototype/
+- Live commercial product: https://app.gettracerank.com
+- Live prototype demo: https://avadavisstudio.github.io/tracerank-prototype/
+- Repository: https://github.com/avadavisstudio/tracerank-prototype
+- Company site: https://avadavisstudio.com/
 
 ## Author
 
 Ava Davis  
 Ava Davis Studio LLC
+
+## Summary
+
+This repository is not trying to pretend the prototype is more than it is.
+
+It is a public proof-of-method surface:
+- real enough to inspect
+- narrow enough to understand
+- honest about its limitations
+- aligned to the live commercial TraceRank offer
+
+If you want the paid audit itself, use the live product at https://app.gettracerank.com.
