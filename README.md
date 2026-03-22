@@ -1,14 +1,19 @@
 # TraceRank Prototype
 
-TraceRank Prototype is a public proof-of-method surface for inspecting how staged onboarding event data can be converted into a structured activation diagnostic.
+TraceRank Prototype is a public-safe proof-of-method surface for inspecting how staged onboarding event data can be converted into a structured activation diagnostic.
 
-It demonstrates the report logic behind TraceRank outputs such as:
+It uses synthetic specimen event data to demonstrate the report logic behind TraceRank outputs such as:
 - Collapse Map
 - Activation Trace
 - Ranked Fix List
 - Measurement OS
 - Event Taxonomy
 - Reliability framing
+
+## Live demo
+
+Demo: https://avadavisstudio.github.io/tracerank-prototype/  
+Repo: https://github.com/avadavisstudio/tracerank-prototype
 
 ## What this prototype proves
 
@@ -58,18 +63,7 @@ This prototype is a public proof-of-method surface. The paid commercial TraceRan
 
 This prototype uses synthetic specimen data only.
 
-It contains:
-- no client data
-- no production exports
-- no implied customer results
-- no implied production deployment
-
-## How to use it
-
-1. Open the live demo or serve the repo locally.
-2. Use the auto-loaded specimen dataset or upload a JSON file matching the sample schema.
-3. Review the Collapse Map, Activation Trace, Ranked Fix List, Measurement OS / KPI Dictionary, and Event Taxonomy.
-4. Export the analysis report.
+It contains no client data, no production exports, and no implied customer outcomes or production deployment.
 
 ## Core method
 
@@ -77,6 +71,13 @@ TraceRank applies:
 - heuristic stage mapping from event sequences into activation stages
 - weighted friction scoring across volatility, drift, and abandonment
 - evidence-session surfacing for manual review and prioritization
+
+## How to use it
+
+1. Open the live demo or serve the repo locally.
+2. Use the auto-loaded specimen dataset or upload a JSON file matching the sample schema.
+3. Review the Collapse Map, Activation Trace, Ranked Fix List, Measurement OS, and Event Taxonomy.
+4. Export the analysis report.
 
 ## Current limitations
 
@@ -103,6 +104,10 @@ This prototype exists so the method surface can be inspected publicly before or 
 
 Ava Davis  
 Ava Davis Studio LLC
+
+## License
+
+MIT
 
 ## Summary
 
