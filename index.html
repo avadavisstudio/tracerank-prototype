@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TraceRank Prototype | Ava Davis Studio LLC</title>
-  <meta name="description" content="Public-safe proof-of-method prototype for TraceRank. Synthetic specimen data only. Not the paid audit.">
+  <title>TraceRank Prototype Demo | Ava Davis Studio LLC</title>
+  <meta name="description" content="Public-safe browser demo for TraceRank. Load specimen or your own JSON event data to inspect activation-style diagnostics.">
   <style>
     :root {
       --bg: #0a0a0b;
@@ -15,7 +15,7 @@
       --line: #262a33;
       --accent: #ca121f;
       --accent-2: #e31b2b;
-      --max: 1080px;
+      --max: 1160px;
       --radius: 18px;
     }
 
@@ -27,8 +27,16 @@
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
     }
+
     a { color: inherit; text-decoration: none; }
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 32px 20px 64px; }
+    button, select, input { font: inherit; }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 20px 64px;
+    }
+
     .eyebrow {
       display: inline-block;
       font-size: 12px;
@@ -38,19 +46,22 @@
       color: var(--accent);
       margin-bottom: 18px;
     }
+
     h1 {
       font-size: clamp(40px, 7vw, 72px);
       line-height: 0.96;
       margin: 0 0 16px;
       letter-spacing: -0.04em;
     }
+
     .lead {
       font-size: 18px;
       line-height: 1.65;
       color: var(--muted);
-      max-width: 820px;
-      margin: 0 0 28px;
+      max-width: 860px;
+      margin: 0 0 24px;
     }
+
     .status {
       display: inline-block;
       background: rgba(202,18,31,0.12);
@@ -60,40 +71,69 @@
       border-radius: 999px;
       font-size: 13px;
       font-weight: 600;
-      margin-bottom: 28px;
+      margin-bottom: 18px;
     }
-    .actions {
+
+    .hero-actions,
+    .toolbar {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin: 0 0 40px;
     }
-    .btn {
+
+    .hero-actions {
+      margin: 0 0 34px;
+    }
+
+    .btn,
+    .select {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       min-height: 46px;
-      padding: 0 18px;
+      padding: 0 16px;
       border-radius: 999px;
       border: 1px solid var(--line);
       background: var(--panel);
       color: var(--text);
-      font-weight: 600;
       transition: 160ms ease;
     }
-    .btn:hover { transform: translateY(-1px); border-color: #3a404d; }
+
+    .btn {
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn:hover,
+    .select:hover {
+      transform: translateY(-1px);
+      border-color: #3a404d;
+    }
+
     .btn.primary {
       background: var(--accent);
       border-color: var(--accent);
       color: white;
     }
-    .btn.primary:hover { background: var(--accent-2); border-color: var(--accent-2); }
+
+    .btn.primary:hover {
+      background: var(--accent-2);
+      border-color: var(--accent-2);
+    }
+
+    .select {
+      min-width: 220px;
+      cursor: pointer;
+      appearance: none;
+    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 16px;
-      margin-top: 8px;
+      margin-top: 12px;
     }
+
     .card {
       grid-column: span 6;
       background: var(--panel);
@@ -101,7 +141,36 @@
       border-radius: var(--radius);
       padding: 22px;
     }
+
     .card.full { grid-column: span 12; }
+    .card.third { grid-column: span 4; }
+
+    .kpi {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-height: 132px;
+    }
+
+    .kpi-label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    .kpi-value {
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .kpi-note {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
     h2 {
       font-size: 14px;
       letter-spacing: 0.1em;
@@ -109,25 +178,35 @@
       color: var(--muted);
       margin: 0 0 14px;
     }
+
     h3 {
       font-size: 22px;
       line-height: 1.2;
       margin: 0 0 10px;
     }
+
     p {
       margin: 0 0 12px;
       color: var(--muted);
       line-height: 1.7;
     }
-    ul {
+
+    ul, ol {
       margin: 0;
       padding-left: 18px;
       color: var(--muted);
       line-height: 1.8;
     }
+
     li strong { color: var(--text); }
-    .mono {
+
+    .mono,
+    .code-inline {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      color: #d8dce5;
+    }
+
+    .mono {
       font-size: 14px;
       background: var(--panel-2);
       border: 1px solid var(--line);
@@ -135,17 +214,88 @@
       padding: 18px;
       overflow-x: auto;
       white-space: pre;
-      color: #d8dce5;
     }
-    .inline-code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+    .code-inline {
       background: var(--panel-2);
       border: 1px solid var(--line);
       border-radius: 10px;
       padding: 2px 8px;
-      color: #d8dce5;
       white-space: nowrap;
     }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .event {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+    }
+
+    .event-time {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .event-body strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 3px;
+    }
+
+    .event-body span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .banner {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--panel-2);
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .banner.ok {
+      border-color: rgba(40,167,69,0.45);
+      background: rgba(40,167,69,0.10);
+      color: #d7f7e1;
+    }
+
+    .banner.warn {
+      border-color: rgba(255,193,7,0.45);
+      background: rgba(255,193,7,0.10);
+      color: #ffe9b3;
+    }
+
     .footer {
       margin-top: 26px;
       padding-top: 18px;
@@ -153,23 +303,30 @@
       color: #7e8594;
       font-size: 13px;
     }
-    @media (max-width: 760px) {
-      .card { grid-column: span 12; }
+
+    input[type="file"] { display: none; }
+
+    @media (max-width: 900px) {
+      .card, .card.third { grid-column: span 12; }
+    }
+
+    @media (max-width: 640px) {
       .wrap { padding: 22px 16px 44px; }
       .lead { font-size: 16px; }
+      .event { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <main class="wrap">
     <div class="eyebrow">Ava Davis Studio LLC</div>
-    <h1>TraceRank Prototype</h1>
-    <div class="status">Inspectable proof-of-method surface · Synthetic data only · Not the paid audit</div>
+    <h1>TraceRank Prototype Demo</h1>
+    <div class="status">Browser-local demo · Synthetic specimen data supported · Not the paid audit</div>
     <p class="lead">
-      This prototype exists so buyers can inspect the method surface publicly before purchase. The paid commercial TraceRank offer is the structured buy → intake → CSV upload → audit delivery flow at the live product.
+      This is a public-safe demo surface for TraceRank. Load the built-in specimen dataset or upload your own JSON event data to inspect how staged onboarding sessions get translated into structured activation diagnostics. The paid commercial offer remains the live TraceRank Founding Audit.
     </p>
 
-    <div class="actions">
+    <div class="hero-actions">
       <a class="btn primary" href="https://app.gettracerank.com/" target="_blank" rel="noopener noreferrer">Open Live Product</a>
       <a class="btn" href="https://app.gettracerank.com/specimen-report" target="_blank" rel="noopener noreferrer">View Live Specimen Report</a>
       <a class="btn" href="https://github.com/avadavisstudio/tracerank-prototype" target="_blank" rel="noopener noreferrer">View Repository</a>
@@ -177,46 +334,129 @@
     </div>
 
     <section class="grid">
+      <article class="card full">
+        <h2>Run the demo</h2>
+        <h3>Load specimen data or upload your own JSON</h3>
+        <p>Everything stays in the browser. This demo accepts JSON using the sample schema below. The paid audit accepts CSV with <span class="code-inline">user_id</span>, <span class="code-inline">session_id</span>, <span class="code-inline">event_name</span>, <span class="code-inline">stage</span>, and <span class="code-inline">occurred_at</span>.</p>
+        <div class="toolbar">
+          <button class="btn primary" id="loadSpecimenBtn">Load specimen dataset</button>
+          <label class="btn" for="uploadInput">Upload your own JSON</label>
+          <input id="uploadInput" type="file" accept=".json,application/json">
+          <button class="btn" id="resetBtn">Reset local data</button>
+          <button class="btn" id="exportBtn">Export analysis report</button>
+          <select id="sessionSelect" class="select">
+            <option value="">Choose a session</option>
+          </select>
+        </div>
+        <div id="notice" class="banner">Load the specimen dataset to populate the prototype outputs.</div>
+      </article>
+
+      <article class="card third">
+        <div class="kpi">
+          <div class="kpi-label">Sessions analyzed</div>
+          <div class="kpi-value" id="sessionsAnalyzed">0</div>
+          <div class="kpi-note" id="sessionsAnalyzedNote">No data loaded yet.</div>
+        </div>
+      </article>
+
+      <article class="card third">
+        <div class="kpi">
+          <div class="kpi-label">First-value rate</div>
+          <div class="kpi-value" id="firstValueRate">—</div>
+          <div class="kpi-note" id="firstValueRateNote">Loads after analysis.</div>
+        </div>
+      </article>
+
+      <article class="card third">
+        <div class="kpi">
+          <div class="kpi-label">Median time to first value</div>
+          <div class="kpi-value" id="medianTimeToValue">—</div>
+          <div class="kpi-note" id="medianTimeToValueNote">Loads after analysis.</div>
+        </div>
+      </article>
+
       <article class="card">
-        <h2>What this proves</h2>
-        <h3>A real public method surface</h3>
-        <ul>
-          <li>Staged onboarding event data can be translated into structured diagnostic outputs.</li>
-          <li>The proof surface is inspectable in public.</li>
-          <li>The prototype is narrow enough to understand without overstating what it proves.</li>
+        <h2>Executive Decision Block</h2>
+        <h3 id="executiveHeadline">No diagnosis loaded yet</h3>
+        <p id="executiveSummary">Load the specimen dataset or upload JSON to generate a directional readout.</p>
+        <div class="pill-row" id="executivePills"></div>
+      </article>
+
+      <article class="card">
+        <h2>Primary Diagnostic Readout</h2>
+        <h3 id="collapseStage">Collapse point pending</h3>
+        <p id="collapseSummary">The prototype will identify the stage where the journey most commonly fails before activation.</p>
+      </article>
+
+      <article class="card">
+        <h2>State-First Signal Layer</h2>
+        <h3>Volatility · Drift · Abandonment</h3>
+        <p id="signalSummary">Signals load after analysis.</p>
+        <div class="pill-row" id="signalPills"></div>
+      </article>
+
+      <article class="card">
+        <h2>Action Block</h2>
+        <h3>Fastest directional intervention path</h3>
+        <ol id="actionList">
+          <li>Load data to generate ranked intervention priorities.</li>
+        </ol>
+      </article>
+
+      <article class="card">
+        <h2>Collapse Map</h2>
+        <h3>Where the journey starts failing</h3>
+        <p id="collapseMapText">Load data to see the dominant collapse pattern and business risk.</p>
+      </article>
+
+      <article class="card">
+        <h2>Ranked Fix List</h2>
+        <h3>Prioritized by severity and activation distance</h3>
+        <ol id="fixList">
+          <li>Load data to generate ranked fixes.</li>
+        </ol>
+      </article>
+
+      <article class="card full">
+        <h2>Session inspector</h2>
+        <h3 id="sessionTitle">Choose a session</h3>
+        <p id="sessionMeta">The selected session timeline will appear here.</p>
+        <div class="timeline" id="timeline"></div>
+      </article>
+
+      <article class="card">
+        <h2>Activation Trace</h2>
+        <h3>Single-session path</h3>
+        <p id="activationTraceText">Select a session to inspect event progression, idle gaps, and the moment activation or abandonment occurs.</p>
+      </article>
+
+      <article class="card">
+        <h2>Measurement OS</h2>
+        <h3>Directional metrics used in this demo</h3>
+        <ul id="measurementList">
+          <li>Activation rate</li>
+          <li>Median time to first value</li>
+          <li>Stage abandonment concentration</li>
+          <li>Repeated-effort rate</li>
         </ul>
       </article>
 
       <article class="card">
-        <h2>What this does not prove</h2>
-        <h3>Not client proof</h3>
-        <ul>
-          <li>Client outcomes</li>
-          <li>Production deployment</li>
-          <li>Benchmarked scoring accuracy</li>
-          <li>Implementation capability</li>
-        </ul>
+        <h2>Event Taxonomy</h2>
+        <h3>Expected staged event model</h3>
+        <div class="pill-row" id="taxonomyPills">
+          <span class="pill">Visit</span>
+          <span class="pill">Create Account</span>
+          <span class="pill">Verify</span>
+          <span class="pill">Setup</span>
+          <span class="pill">First Value</span>
+        </div>
       </article>
 
       <article class="card">
-        <h2>Prototype input vs commercial input</h2>
-        <h3>Different surfaces, different input formats</h3>
-        <p><strong>Prototype input:</strong> JSON using the sample schema below.</p>
-        <p><strong>Commercial input:</strong> CSV with <span class="inline-code">user_id, session_id, event_name, stage, occurred_at</span></p>
-        <p>This prototype is a public-safe demonstration layer, not the live commercial delivery flow.</p>
-      </article>
-
-      <article class="card">
-        <h2>Outputs shown here</h2>
-        <h3>Proof-of-method diagnostic structures</h3>
-        <ul>
-          <li>Collapse Map</li>
-          <li>Activation Trace</li>
-          <li>Ranked Fix List</li>
-          <li>Measurement OS</li>
-          <li>Event Taxonomy</li>
-          <li>Reliability framing</li>
-        </ul>
+        <h2>Reliability Block</h2>
+        <h3>Directional, not overstated</h3>
+        <p id="reliabilityText">This public demo is synthetic and browser-local. It is designed to demonstrate method shape, not claim benchmarked production validity or customer outcomes.</p>
       </article>
 
       <article class="card full">
@@ -228,29 +468,517 @@
       "userId": "u_001",
       "company": "Acme",
       "events": [
-        { "ts": "2026-03-07T12:00:00Z", "type": "page_view_landing" }
+        { "ts": "2026-03-07T12:00:00Z", "type": "page_view_landing", "stage": "Visit" },
+        { "ts": "2026-03-07T12:00:14Z", "type": "create_account", "stage": "Create Account" },
+        { "ts": "2026-03-07T12:02:02Z", "type": "verify_email", "stage": "Verify" },
+        { "ts": "2026-03-07T12:05:12Z", "type": "setup_workspace", "stage": "Setup" },
+        { "ts": "2026-03-07T12:07:20Z", "type": "first_output", "stage": "First Value" }
       ]
     }
   ]
 }</div>
       </article>
-
-      <article class="card full">
-        <h2>Public-safe data note</h2>
-        <h3>Synthetic specimen data only</h3>
-        <p>
-          This prototype uses synthetic specimen data only. It contains no client data, no production exports, and no implied customer outcomes or production deployment.
-        </p>
-        <p>
-          For the paid audit itself, use the live product at
-          <a href="https://app.gettracerank.com/" target="_blank" rel="noopener noreferrer" style="color:#ffffff;text-decoration:underline;">app.gettracerank.com</a>.
-        </p>
-      </article>
     </section>
 
     <div class="footer">
-      © 2026 Ava Davis Studio LLC · TraceRank Prototype · Public-safe proof-of-method surface
+      © 2026 Ava Davis Studio LLC · TraceRank Prototype Demo · Public-safe proof-of-method surface
     </div>
   </main>
+
+  <script>
+    const STORAGE_KEY = "tracerankPrototypeDatasetV2";
+
+    const specimenData = {
+      sessions: [
+        {
+          sessionId: "s_001",
+          userId: "u_001",
+          company: "Acme",
+          events: [
+            { ts: "2026-03-07T12:00:00Z", type: "page_view_landing", stage: "Visit" },
+            { ts: "2026-03-07T12:00:18Z", type: "create_account", stage: "Create Account" },
+            { ts: "2026-03-07T12:01:54Z", type: "verify_email", stage: "Verify" },
+            { ts: "2026-03-07T12:04:31Z", type: "setup_workspace", stage: "Setup" },
+            { ts: "2026-03-07T12:06:44Z", type: "first_output", stage: "First Value" }
+          ]
+        },
+        {
+          sessionId: "s_002",
+          userId: "u_002",
+          company: "Acme",
+          events: [
+            { ts: "2026-03-07T13:10:00Z", type: "page_view_landing", stage: "Visit" },
+            { ts: "2026-03-07T13:10:19Z", type: "create_account", stage: "Create Account" },
+            { ts: "2026-03-07T13:11:00Z", type: "verify_email_error", stage: "Verify" },
+            { ts: "2026-03-07T13:11:31Z", type: "verify_email_retry", stage: "Verify" },
+            { ts: "2026-03-07T13:16:41Z", type: "session_end", stage: "Verify" }
+          ]
+        },
+        {
+          sessionId: "s_003",
+          userId: "u_003",
+          company: "Northstar",
+          events: [
+            { ts: "2026-03-08T09:00:00Z", type: "page_view_landing", stage: "Visit" },
+            { ts: "2026-03-08T09:00:28Z", type: "create_account", stage: "Create Account" },
+            { ts: "2026-03-08T09:01:10Z", type: "verify_email", stage: "Verify" },
+            { ts: "2026-03-08T09:03:19Z", type: "setup_workspace", stage: "Setup" },
+            { ts: "2026-03-08T09:04:52Z", type: "invite_teammate", stage: "Setup" },
+            { ts: "2026-03-08T09:07:12Z", type: "session_end", stage: "Setup" }
+          ]
+        },
+        {
+          sessionId: "s_004",
+          userId: "u_004",
+          company: "Northstar",
+          events: [
+            { ts: "2026-03-08T11:14:00Z", type: "page_view_landing", stage: "Visit" },
+            { ts: "2026-03-08T11:14:16Z", type: "create_account", stage: "Create Account" },
+            { ts: "2026-03-08T11:14:58Z", type: "verify_email", stage: "Verify" },
+            { ts: "2026-03-08T11:18:09Z", type: "setup_workspace", stage: "Setup" },
+            { ts: "2026-03-08T11:20:40Z", type: "first_output", stage: "First Value" }
+          ]
+        }
+      ]
+    };
+
+    let currentData = null;
+    let currentAnalysis = null;
+
+    function byId(id) {
+      return document.getElementById(id);
+    }
+
+    function safeArray(value) {
+      return Array.isArray(value) ? value : [];
+    }
+
+    function deriveStage(type) {
+      const value = String(type || "").toLowerCase();
+      if (value.includes("visit") || value.includes("landing") || value.includes("page_view")) return "Visit";
+      if (value.includes("account") || value.includes("signup") || value.includes("sign_up")) return "Create Account";
+      if (value.includes("verify")) return "Verify";
+      if (value.includes("setup") || value.includes("invite") || value.includes("workspace") || value.includes("connect")) return "Setup";
+      if (value.includes("first_output") || value.includes("first_value") || value.includes("activation")) return "First Value";
+      return "Unknown";
+    }
+
+    function normalizeData(raw) {
+      const sessions = Array.isArray(raw) ? raw : raw && Array.isArray(raw.sessions) ? raw.sessions : null;
+      if (!sessions) {
+        throw new Error('JSON must be an array of sessions or an object with a "sessions" array.');
+      }
+
+      return {
+        sessions: sessions.map((session, index) => {
+          const sessionId = String(session.sessionId || session.session_id || ("session_" + (index + 1)));
+          const userId = String(session.userId || session.user_id || ("user_" + (index + 1)));
+          const company = String(session.company || session.account || "Unknown");
+          const events = safeArray(session.events).map((event, eventIndex) => ({
+            ts: String(event.ts || event.occurred_at || event.timestamp || ""),
+            type: String(event.type || event.event_name || ("event_" + (eventIndex + 1))),
+            stage: String(event.stage || deriveStage(event.type || event.event_name || "Unknown"))
+          })).filter(event => event.ts && event.type);
+
+          if (!events.length) {
+            throw new Error("Session " + sessionId + " has no valid events.");
+          }
+
+          events.sort((a, b) => new Date(a.ts) - new Date(b.ts));
+          return { sessionId, userId, company, events };
+        })
+      };
+    }
+
+    function isActivated(session) {
+      return session.events.some(event => {
+        const value = event.type.toLowerCase();
+        return value.includes("first_output") || value.includes("first_value") || value.includes("activation");
+      });
+    }
+
+    function formatDuration(ms) {
+      if (!Number.isFinite(ms) || ms < 0) return "—";
+      const totalMinutes = Math.round(ms / 60000);
+      const hours = Math.floor(totalMinutes / 60);
+      const minutes = totalMinutes % 60;
+      if (hours > 0) return hours + "h " + minutes + "m";
+      return minutes + "m";
+    }
+
+    function median(values) {
+      if (!values.length) return null;
+      const sorted = values.slice().sort((a, b) => a - b);
+      const mid = Math.floor(sorted.length / 2);
+      return sorted.length % 2 === 0
+        ? (sorted[mid - 1] + sorted[mid]) / 2
+        : sorted[mid];
+    }
+
+    function buildActionItems(collapseStage, repeatedEffortSessions, abandonment) {
+      const items = [];
+
+      if (collapseStage === "Verify") {
+        items.push("Reduce verification friction first: tighten error handling, recovery copy, resend visibility, and retry states.");
+      } else if (collapseStage === "Setup") {
+        items.push("Compress setup path to first value: defer optional configuration and remove non-essential decisions.");
+      } else if (collapseStage === "Create Account") {
+        items.push("Lower account-creation friction: reduce fields and shorten the distance between value promise and sign-up completion.");
+      } else {
+        items.push("Review the highest-friction stage before activation and shorten the path to first value.");
+      }
+
+      if (repeatedEffortSessions > 0) {
+        items.push("Investigate repeated-effort loops: retries, repeated stage touches, and unclear recovery paths are inflating drift.");
+      }
+
+      if (abandonment > 0) {
+        items.push("Instrument abandonment exits and idle gaps so the next audit can separate trust friction from instrumentation gaps.");
+      }
+
+      return items.slice(0, 3);
+    }
+
+    function buildFixes(collapseStage, repeatedEffortSessions, abandonment) {
+      const fixes = [];
+
+      if (collapseStage !== "No dominant collapse stage") {
+        fixes.push("Fix the " + collapseStage + " stage first because it currently holds the largest concentration of pre-activation failures.");
+      }
+
+      if (repeatedEffortSessions > 0) {
+        fixes.push("Reduce loops and retries by making recovery states explicit and shortening the number of decisions required to continue.");
+      }
+
+      if (abandonment > 0) {
+        fixes.push("Add instrumentation for silent exits, long idle gaps, and incomplete session endings.");
+      }
+
+      fixes.push("Re-run this flow after the first intervention to see whether the collapse point moves closer to or farther from first value.");
+      return fixes.slice(0, 4);
+    }
+
+    function analyze(data) {
+      const sessions = data.sessions;
+      const activatedSessions = sessions.filter(isActivated);
+      const firstValueRate = sessions.length ? (activatedSessions.length / sessions.length) * 100 : 0;
+
+      const timeToValueMs = activatedSessions.map(session => {
+        const start = new Date(session.events[0].ts).getTime();
+        const activationEvent = session.events.find(event => {
+          const value = event.type.toLowerCase();
+          return value.includes("first_output") || value.includes("first_value") || value.includes("activation");
+        });
+        return activationEvent ? (new Date(activationEvent.ts).getTime() - start) : null;
+      }).filter(value => value !== null);
+
+      const nonActivated = sessions.filter(session => !isActivated(session));
+      const collapseCounts = {};
+      let repeatedEffortSessions = 0;
+      let volatility = 0;
+      let drift = 0;
+      let abandonment = nonActivated.length;
+
+      sessions.forEach(session => {
+        const types = session.events.map(event => event.type.toLowerCase());
+        const stages = session.events.map(event => event.stage);
+        const lastStage = stages[stages.length - 1] || "Unknown";
+
+        if (!isActivated(session)) {
+          collapseCounts[lastStage] = (collapseCounts[lastStage] || 0) + 1;
+        }
+
+        const hasRepeatedStage = stages.some((stage, index) => stages.indexOf(stage) !== index);
+        const hasRetry = types.some(type => type.includes("retry") || type.includes("error"));
+        const hasBacktrack = stages.some((stage, index) => index > 0 && stages[index - 1] === "Setup" && (stage === "Verify" || stage === "Create Account"));
+
+        if (hasRepeatedStage || hasRetry) repeatedEffortSessions += 1;
+        if (hasRetry) volatility += 1;
+        if (hasBacktrack || hasRepeatedStage) drift += 1;
+      });
+
+      const collapseEntry = Object.entries(collapseCounts).sort((a, b) => b[1] - a[1])[0];
+      const collapseStage = collapseEntry ? collapseEntry[0] : "No dominant collapse stage";
+      const medianValueMs = median(timeToValueMs);
+
+      const executiveHeadline = collapseStage === "No dominant collapse stage"
+        ? "Directional signal loaded with no dominant collapse stage yet"
+        : "Primary collapse pressure clusters around " + collapseStage;
+
+      const executiveSummary = collapseStage === "No dominant collapse stage"
+        ? "The current dataset is too small or too balanced to assign one dominant collapse stage with confidence."
+        : (nonActivated.length + " of " + sessions.length + " sessions fail before activation, with the highest concentration stopping in " + collapseStage + ".");
+
+      return {
+        sessions,
+        activatedSessions,
+        firstValueRate,
+        medianValueMs,
+        collapseStage,
+        executiveHeadline,
+        executiveSummary,
+        volatility,
+        drift,
+        abandonment,
+        repeatedEffortSessions,
+        actionItems: buildActionItems(collapseStage, repeatedEffortSessions, abandonment),
+        rankedFixes: buildFixes(collapseStage, repeatedEffortSessions, abandonment)
+      };
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function populateSessionSelect(sessions) {
+      const select = byId("sessionSelect");
+      select.innerHTML = '<option value="">Choose a session</option>' + sessions.map(session =>
+        '<option value="' + escapeHtml(session.sessionId) + '">' +
+          escapeHtml(session.sessionId) + ' · ' +
+          escapeHtml(session.company) + ' · ' +
+          escapeHtml(session.userId) +
+        '</option>'
+      ).join("");
+    }
+
+    function renderAnalysis(analysis) {
+      byId("sessionsAnalyzed").textContent = String(analysis.sessions.length);
+      byId("sessionsAnalyzedNote").textContent = analysis.sessions.length === 1 ? "1 session loaded." : (analysis.sessions.length + " sessions loaded.");
+
+      byId("firstValueRate").textContent = Math.round(analysis.firstValueRate) + "%";
+      byId("firstValueRateNote").textContent = analysis.activatedSessions.length + " of " + analysis.sessions.length + " sessions reached first value.";
+
+      byId("medianTimeToValue").textContent = formatDuration(analysis.medianValueMs);
+      byId("medianTimeToValueNote").textContent = analysis.activatedSessions.length
+        ? "Median from first event to activation event."
+        : "No activation event found in current data.";
+
+      byId("executiveHeadline").textContent = analysis.executiveHeadline;
+      byId("executiveSummary").textContent = analysis.executiveSummary;
+      byId("executivePills").innerHTML =
+        '<span class="pill">Collapse: ' + escapeHtml(analysis.collapseStage) + '</span>' +
+        '<span class="pill">Repeated effort: ' + analysis.repeatedEffortSessions + '</span>' +
+        '<span class="pill">Abandonment pressure: ' + analysis.abandonment + '</span>';
+
+      byId("collapseStage").textContent = analysis.collapseStage === "No dominant collapse stage"
+        ? analysis.collapseStage
+        : (analysis.collapseStage + " is the dominant collapse stage");
+
+      byId("collapseSummary").textContent = analysis.executiveSummary;
+
+      byId("signalSummary").textContent = "These are directional heuristics from the current dataset, not benchmarked production scores.";
+      byId("signalPills").innerHTML =
+        '<span class="pill">Volatility: ' + analysis.volatility + '</span>' +
+        '<span class="pill">Drift: ' + analysis.drift + '</span>' +
+        '<span class="pill">Abandonment: ' + analysis.abandonment + '</span>';
+
+      byId("actionList").innerHTML = analysis.actionItems.map(item => "<li>" + escapeHtml(item) + "</li>").join("");
+      byId("collapseMapText").textContent = analysis.collapseStage === "No dominant collapse stage"
+        ? "No single collapse stage dominates this small dataset."
+        : ("The journey most commonly breaks in " + analysis.collapseStage + ". That creates the highest directional risk before first value.");
+
+      byId("fixList").innerHTML = analysis.rankedFixes.map(item => "<li>" + escapeHtml(item) + "</li>").join("");
+
+      byId("measurementList").innerHTML =
+        "<li>Activation rate: " + Math.round(analysis.firstValueRate) + "%</li>" +
+        "<li>Median time to first value: " + formatDuration(analysis.medianValueMs) + "</li>" +
+        "<li>Abandonment concentration: " + escapeHtml(analysis.collapseStage) + "</li>" +
+        "<li>Repeated-effort sessions: " + analysis.repeatedEffortSessions + "</li>";
+
+      byId("taxonomyPills").innerHTML =
+        '<span class="pill">Visit</span>' +
+        '<span class="pill">Create Account</span>' +
+        '<span class="pill">Verify</span>' +
+        '<span class="pill">Setup</span>' +
+        '<span class="pill">First Value</span>';
+
+      byId("reliabilityText").textContent = "This public demo is synthetic and browser-local. It demonstrates method shape only. Use the live product for the paid Founding Audit, canonical specimen report, and commercial flow.";
+      byId("notice").className = "banner ok";
+      byId("notice").textContent = "Analysis loaded locally. Select a session to inspect its event path.";
+    }
+
+    function renderSession(sessionId) {
+      if (!currentData) return;
+
+      const session = currentData.sessions.find(item => item.sessionId === sessionId);
+
+      if (!session) {
+        byId("sessionTitle").textContent = "Choose a session";
+        byId("sessionMeta").textContent = "The selected session timeline will appear here.";
+        byId("timeline").innerHTML = "";
+        byId("activationTraceText").textContent = "Select a session to inspect event progression, idle gaps, and the moment activation or abandonment occurs.";
+        return;
+      }
+
+      const activated = isActivated(session);
+      const start = new Date(session.events[0].ts).getTime();
+      const end = new Date(session.events[session.events.length - 1].ts).getTime();
+
+      byId("sessionTitle").textContent = session.sessionId + " · " + session.company;
+      byId("sessionMeta").textContent = session.userId + " · " + session.events.length + " events · " + (activated ? "Activated" : "Did not activate") + " · " + formatDuration(end - start) + " total span";
+
+      byId("timeline").innerHTML = session.events.map((event, index) => {
+        const previous = index > 0 ? new Date(session.events[index - 1].ts).getTime() : null;
+        const current = new Date(event.ts).getTime();
+        const gap = previous ? (" · " + formatDuration(current - previous) + " since prior event") : "";
+        return (
+          '<div class="event">' +
+            '<div class="event-time">' + escapeHtml(event.ts) + '</div>' +
+            '<div class="event-body">' +
+              '<strong>' + escapeHtml(event.type) + '</strong>' +
+              '<span>' + escapeHtml(event.stage) + gap + '</span>' +
+            '</div>' +
+          '</div>'
+        );
+      }).join("");
+
+      byId("activationTraceText").textContent = activated
+        ? ("This session reaches first value after " + formatDuration(end - start) + " with the final activation event visible in the timeline.")
+        : "This session ends before first value. Review the final stage and any long idle gaps or retries in the timeline.";
+    }
+
+    function exportReport() {
+      if (!currentAnalysis) {
+        byId("notice").className = "banner warn";
+        byId("notice").textContent = "Load specimen data or upload JSON before exporting a report.";
+        return;
+      }
+
+      const lines = [
+        "# TraceRank Prototype Demo Report",
+        "",
+        "Sessions analyzed: " + currentAnalysis.sessions.length,
+        "First-value rate: " + Math.round(currentAnalysis.firstValueRate) + "%",
+        "Median time to first value: " + formatDuration(currentAnalysis.medianValueMs),
+        "Collapse stage: " + currentAnalysis.collapseStage,
+        "Repeated-effort sessions: " + currentAnalysis.repeatedEffortSessions,
+        "Volatility: " + currentAnalysis.volatility,
+        "Drift: " + currentAnalysis.drift,
+        "Abandonment pressure: " + currentAnalysis.abandonment,
+        "",
+        "## Executive Summary",
+        currentAnalysis.executiveSummary,
+        "",
+        "## Ranked Fix List",
+        "1. " + currentAnalysis.rankedFixes.join("\n2. "),
+        "",
+        "## Reliability Note",
+        "Directional demo output only. Synthetic/browser-local surface. Not client proof or benchmarked production scoring."
+      ].join("\n");
+
+      const blob = new Blob([lines], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "tracerank-prototype-report.md";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function persist(data) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function hydrate(data) {
+      currentData = data;
+      currentAnalysis = analyze(data);
+      persist(data);
+      populateSessionSelect(data.sessions);
+      renderAnalysis(currentAnalysis);
+      renderSession("");
+    }
+
+    function loadSpecimen() {
+      hydrate(normalizeData(specimenData));
+    }
+
+    function resetData() {
+      localStorage.removeItem(STORAGE_KEY);
+      currentData = null;
+      currentAnalysis = null;
+
+      byId("sessionSelect").innerHTML = '<option value="">Choose a session</option>';
+      byId("timeline").innerHTML = "";
+      byId("sessionsAnalyzed").textContent = "0";
+      byId("sessionsAnalyzedNote").textContent = "No data loaded yet.";
+      byId("firstValueRate").textContent = "—";
+      byId("firstValueRateNote").textContent = "Loads after analysis.";
+      byId("medianTimeToValue").textContent = "—";
+      byId("medianTimeToValueNote").textContent = "Loads after analysis.";
+      byId("executiveHeadline").textContent = "No diagnosis loaded yet";
+      byId("executiveSummary").textContent = "Load the specimen dataset or upload JSON to generate a directional readout.";
+      byId("executivePills").innerHTML = "";
+      byId("collapseStage").textContent = "Collapse point pending";
+      byId("collapseSummary").textContent = "The prototype will identify the stage where the journey most commonly fails before activation.";
+      byId("signalSummary").textContent = "Signals load after analysis.";
+      byId("signalPills").innerHTML = "";
+      byId("actionList").innerHTML = "<li>Load data to generate ranked intervention priorities.</li>";
+      byId("collapseMapText").textContent = "Load data to see the dominant collapse pattern and business risk.";
+      byId("fixList").innerHTML = "<li>Load data to generate ranked fixes.</li>";
+      byId("sessionTitle").textContent = "Choose a session";
+      byId("sessionMeta").textContent = "The selected session timeline will appear here.";
+      byId("activationTraceText").textContent = "Select a session to inspect event progression, idle gaps, and the moment activation or abandonment occurs.";
+      byId("measurementList").innerHTML =
+        "<li>Activation rate</li>" +
+        "<li>Median time to first value</li>" +
+        "<li>Stage abandonment concentration</li>" +
+        "<li>Repeated-effort rate</li>";
+      byId("taxonomyPills").innerHTML =
+        '<span class="pill">Visit</span>' +
+        '<span class="pill">Create Account</span>' +
+        '<span class="pill">Verify</span>' +
+        '<span class="pill">Setup</span>' +
+        '<span class="pill">First Value</span>';
+      byId("reliabilityText").textContent = "This public demo is synthetic and browser-local. It is designed to demonstrate method shape, not claim benchmarked production validity or customer outcomes.";
+      byId("notice").className = "banner";
+      byId("notice").textContent = "Prototype reset. Load the specimen dataset to populate the outputs again.";
+    }
+
+    byId("loadSpecimenBtn").addEventListener("click", loadSpecimen);
+    byId("resetBtn").addEventListener("click", resetData);
+    byId("exportBtn").addEventListener("click", exportReport);
+
+    byId("sessionSelect").addEventListener("change", function (event) {
+      renderSession(event.target.value);
+    });
+
+    byId("uploadInput").addEventListener("change", async function (event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      try {
+        const text = await file.text();
+        const parsed = JSON.parse(text);
+        hydrate(normalizeData(parsed));
+        byId("notice").className = "banner ok";
+        byId("notice").textContent = "Loaded " + currentData.sessions.length + " sessions from " + file.name + ".";
+      } catch (error) {
+        byId("notice").className = "banner warn";
+        byId("notice").textContent = error && error.message ? error.message : "Could not parse JSON.";
+      } finally {
+        event.target.value = "";
+      }
+    });
+
+    (function () {
+      try {
+        const cached = localStorage.getItem(STORAGE_KEY);
+        if (cached) {
+          hydrate(normalizeData(JSON.parse(cached)));
+          byId("notice").className = "banner ok";
+          byId("notice").textContent = "Recovered your last local dataset from this browser.";
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  </script>
 </body>
 </html>
