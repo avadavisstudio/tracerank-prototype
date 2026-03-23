@@ -1,122 +1,40 @@
-# TraceRank Prototype
+# TraceRank Prototype Demo
 
-TraceRank Prototype is a public-safe proof-of-method surface for inspecting how staged onboarding event data can be converted into a structured activation diagnostic.
+TraceRank Prototype Demo is a public-safe proof-of-method surface for inspecting how staged onboarding event data can be converted into a structured activation diagnostic.
 
-It uses synthetic specimen event data to demonstrate the report logic behind TraceRank outputs such as:
-- Collapse Map
-- Activation Trace
-- Ranked Fix List
-- Measurement OS
-- Event Taxonomy
-- Reliability framing
+## Live links
 
-## Live demo
-
-Demo: https://avadavisstudio.github.io/tracerank-prototype/  
-Repo: https://github.com/avadavisstudio/tracerank-prototype
-
-## What this prototype proves
-
-This prototype proves:
-- the method has a real surface
-- staged event data can be reconstructed into diagnostic outputs
-- the output logic is inspectable in public
-
-## What this prototype does not prove
-
-This prototype does not prove:
-- client outcomes
-- production deployment
-- benchmarked scoring accuracy
-- implementation capability
-
-This prototype is separate from the live commercial TraceRank offer.  
-The paid offer is the TraceRank Founding Audit at **app.gettracerank.com**.
-
-## What this prototype is
-
-This prototype is a public-safe proof-of-method demonstration.
-
-It is designed to show how staged onboarding event data can be converted into diagnostic outputs across flows such as signup, verification, workspace creation, import/setup, and first value.
-
-## What this prototype is not
-
-This prototype is not:
-- a production analytics platform
-- a session replay tool
-- an LLM observability stack
-- evidence of client deployments or production integrations
-- a substitute for the live commercial TraceRank offer
-
-## Positioning relationship
-
-- Ava Davis Studio LLC = company behind TraceRank
-- TraceRank = productized activation diagnostic for B2B SaaS onboarding flows
-- Founding Audit = current commercial offer
-- This prototype = public proof-of-method demonstration using synthetic specimen data
-
-## Bridge to the live product
-
-This prototype is a public proof-of-method surface. The paid commercial TraceRank offer is the structured buy → intake → CSV upload → audit delivery flow at app.gettracerank.com.
-
-## Public-safe data note
-
-This prototype uses synthetic specimen data only.
-
-It contains no client data, no production exports, and no implied customer outcomes or production deployment.
-
-## Core method
-
-TraceRank applies:
-- heuristic stage mapping from event sequences into activation stages
-- weighted friction scoring across volatility, drift, and abandonment
-- evidence-session surfacing for manual review and prioritization
-
-## How to use it
-
-1. Open the live demo or serve the repo locally.
-2. Use the auto-loaded specimen dataset or upload a JSON file matching the sample schema.
-3. Review the Collapse Map, Activation Trace, Ranked Fix List, Measurement OS, and Event Taxonomy.
-4. Export the analysis report.
-
-## Current limitations
-
-- static browser-based prototype
-- no persistent storage or authentication
-- no live data integrations
-- no replay capture
-- heuristic scoring only; not benchmarked or production-validated
-
-## Why this matters
-
-Most teams can already see drop-off. Fewer can isolate the highest-damage breakdown point, distinguish collapse from repeated effort, and decide what to fix first before first value.
-
-This prototype exists so the method surface can be inspected publicly before or without purchase.
-
-## Public links
-
-- Live commercial product: https://app.gettracerank.com
-- Live prototype demo: https://avadavisstudio.github.io/tracerank-prototype/
-- Repository: https://github.com/avadavisstudio/tracerank-prototype
+- Demo: https://avadavisstudio.github.io/tracerank-prototype/
+- Live product: https://app.gettracerank.com/
+- Live specimen report: https://app.gettracerank.com/specimen-report
 - Company site: https://avadavisstudio.com/
+- Repository: https://github.com/avadavisstudio/tracerank-prototype
 
-## Author
+## What this prototype lets a buyer inspect
 
-Ava Davis  
-Ava Davis Studio LLC
+- staged event-to-stage mapping
+- activation collapse identification
+- ranked fix logic
+- session-level trace inspection
+- measurement framing
+- reliability framing
 
-## License
+## Relationship to the paid product
 
-MIT
+- This prototype is a browser-local JSON demo.
+- The paid TraceRank Founding Audit is the live CSV-based service at https://app.gettracerank.com/.
+- The prototype exists so the method surface can be inspected publicly before purchase.
 
-## Summary
+## Public-safe boundaries
 
-This repository is not trying to pretend the prototype is more than it is.
+- synthetic specimen data only
+- no client data
+- no production integrations
+- no customer outcome claims
 
-It is a public proof-of-method surface:
-- real enough to inspect
-- narrow enough to understand
-- honest about its limitations
-- aligned to the live commercial TraceRank offer
+## Local usage
 
-If you want the paid audit itself, use the live product at https://app.gettracerank.com.
+1. Open `index.html` directly in a browser, or serve the repo locally.
+2. Load the specimen dataset or upload your own JSON.
+3. Inspect the decision block, fix list, session timeline, and activation trace.
+4. Export the text report if needed.
