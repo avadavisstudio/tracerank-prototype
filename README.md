@@ -1,6 +1,6 @@
 # TraceRank Prototype Demo
 
-TraceRank Prototype Demo is a public-safe proof-of-method surface for inspecting how staged onboarding event data can be converted into a structured activation diagnostic.
+TraceRank Prototype Demo is a public-safe proof-of-method surface for inspecting how staged onboarding event data can be translated into a structured activation diagnostic.
 
 ## Live links
 
@@ -21,9 +21,9 @@ TraceRank Prototype Demo is a public-safe proof-of-method surface for inspecting
 
 ## Relationship to the paid product
 
-- This prototype is a browser-local JSON demo.
+- This prototype is a browser-local proof-of-method JSON demo.
 - The paid TraceRank Founding Audit is the live CSV-based service at https://app.gettracerank.com/.
-- The prototype exists so the method surface can be inspected publicly before purchase.
+- The prototype exists so the method surface can be inspected publicly before purchase or technical review.
 
 ## Public-safe boundaries
 
